@@ -12,6 +12,11 @@ RUN go build .
 
 FROM puppet/r10k:3.3.3
 
+# install util-linux for an flock with --timeout option
+USER root
+RUN apk update --no-cache && apk upgrade --no-cache && apk add --no-cache util-linux
+USER puppet
+
 COPY --from=BUILDER /build/webhook/webhook /usr/local/bin/webhook
 
 WORKDIR /webhook
