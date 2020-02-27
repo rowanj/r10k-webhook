@@ -6,4 +6,4 @@ echo "Running r10k ${R10K_ARGS}"
 
 # webhook forwards to r10k's docker-entrypoint.sh
 # use a lockfile to serialise requests
-exec flock --timeout 55 run-r10k.lock /docker-entrypoint.sh $R10K_ARGS
+exec flock --timeout 55 /tmp/run-r10k.lock /docker-entrypoint.sh $R10K_ARGS
